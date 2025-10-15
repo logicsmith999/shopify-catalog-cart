@@ -1,20 +1,60 @@
 # Mini Catalog + Cart
 
-A React + TypeScript + Tailwind CSS application that implements a product catalog with shopping cart functionality for a Shopify test assignment.
+A React + TypeScript + Tailwind CSS application that implements a product catalog with shopping cart functionality. Built as a technical assessment for Shopify.
 
 ## Features Implemented
 
 ### Core Requirements ✅
 
-- **Product Catalog**: Fetches and displays products from `/products.json`
-- **Search Functionality**: Search products by title with real-time filtering
-- **Sort Functionality**: Sort products by price (ascending/descending)
+- **Product Catalog**: Fetches and renders products from `/products.json`
+- **Search by Title**: Real-time product search functionality
+- **Sort by Price**: Sort products by price (ascending/descending)
 - **Add to Cart**: Add products to cart with quantity controls
-- **Cart Management**: View cart items, update quantities, remove items
 - **Line Totals & Subtotal**: Calculate and display individual line totals and cart subtotal
 - **localStorage Persistence**: Cart state persists across browser sessions
 - **Loading & Error States**: Proper loading spinner and error handling
-- **Accessible HTML**: Semantic HTML structure with proper ARIA labels
+- **Accessible, Semantic HTML**: Semantic HTML structure with proper ARIA labels
+
+### Sample Data Structure
+
+The application expects `/products.json` to contain an array of products with the following structure:
+
+```json
+[
+  {
+    "id": "p1",
+    "title": "Snowboard Pro",
+    "price": 39900,
+    "tags": ["Premium", "New"]
+  },
+  {
+    "id": "p2",
+    "title": "All-Mountain Bindings",
+    "price": 18900,
+    "tags": ["New"]
+  },
+  {
+    "id": "p3",
+    "title": "Wax Kit",
+    "price": 2900,
+    "tags": ["Accessory"]
+  },
+  {
+    "id": "p4",
+    "title": "Helmet",
+    "price": 9900,
+    "tags": ["Safety", "Premium"]
+  }
+]
+```
+
+### Stretch Goals Implemented ✅
+
+- **✅ Context for cart state**: React Context API with useReducer for state management
+- **✅ Optimistic "save cart" to /api/cart**: Simulated API calls with rollback on error
+- **✅ Error handling**: User-friendly error notifications with retry functionality
+- **✅ Loading states**: Visual feedback during cart operations
+- **✅ Testing**: Comprehensive test suite with Vitest and React Testing Library
 
 ### Technical Implementation
 
@@ -23,6 +63,7 @@ A React + TypeScript + Tailwind CSS application that implements a product catalo
 - **React Context API**: Used for cart state management instead of external libraries
 - **useReducer**: Implemented for complex cart state logic with actions
 - **localStorage**: Automatic persistence of cart data
+- **Optimistic Updates**: Immediate UI updates with API rollback on failure
 
 #### Component Architecture
 
@@ -96,10 +137,10 @@ npm run build
 ### Usage
 
 1. **Browse Products**: View the product catalog with search and sort options
-2. **Add to Cart**: Click "Add to Cart" on any product
+2. **Add to Cart**: Click "Add to Cart" on any product with quantity controls
 3. **Manage Cart**: Use quantity controls (+/-) or remove items
 4. **Persistent Cart**: Cart data automatically saves to localStorage
-5. **Save to API**: Click "Save Cart" to persist changes to the API
+5. **Save to API**: Click "Save Cart" to persist changes to the API (with optimistic updates)
 
 ### Testing
 
@@ -109,11 +150,10 @@ npm run test:run
 
 # Run tests in watch mode
 npm run test
-
+```
 
 **Test Coverage:**
 
-- **Hooks**: Local cart state management and API operations
 - **Components**: Product cards, cart display, and user interactions
 - **Context**: Cart state management and localStorage integration
 - **Utilities**: Price formatting and data transformation
@@ -127,11 +167,11 @@ npm run test
 - **Small Scale**: For this application size, Context provides sufficient state management
 - **Learning**: Demonstrates understanding of React's built-in state management
 
-### Why localStorage over API?
+### Why localStorage + API?
 
-- **Assignment Scope**: Focus on frontend functionality rather than backend integration
-- **Simplicity**: localStorage provides immediate persistence without server setup
-- **User Experience**: Cart persists across browser sessions
+- **Dual Persistence**: localStorage for immediate persistence, API for server-side backup
+- **User Experience**: Cart persists across browser sessions even without server
+- **Optimistic Updates**: Immediate UI feedback with server synchronization
 
 ### Design Choices
 
@@ -156,48 +196,35 @@ The application implements optimistic updates for cart operations:
 - If API succeeds → State confirmed
 - If API fails → UI reverts + error notification with retry option
 
-## What Was Skipped (Stretch Goals)
+## What Was Implemented vs. Skipped
 
-### Stretch Goals Implemented ✅
+### All Stretch Goals Implemented ✅
 
 - **✅ Context for cart state**: React Context API with useReducer
 - **✅ Optimistic "save cart" to /api/cart**: Simulated API calls with rollback on error
 - **✅ Error handling**: User-friendly error notifications with retry functionality
 - **✅ Loading states**: Visual feedback during cart operations
+- **✅ Testing**: Comprehensive test suite with Vitest and React Testing Library
 
 ### Testing Implementation ✅
 
 - **✅ Test Framework**: Vitest with React Testing Library
 - **✅ Unit Tests**: Comprehensive test coverage for:
-  - `useLocalCart` hook - Local cart state management
-  - `useCartApi` hook - API operations and error handling
   - `CartContext` - Context provider and localStorage integration
   - `ProductCard` component - Product display and interactions
   - `Cart` component - Cart display and operations
   - `formatPrice` utility - Price formatting functions
   - `cartApi` service - API simulation and error handling
 
-### Optional Features Not Implemented
+### Nothing Was Skipped
 
-- **Advanced Features**: No wishlist, product details, or checkout flow
+All core requirements and stretch goals were successfully implemented, including:
 
-### Reasoning
-
-- **Time Constraints**: Focus on core requirements first
-- **Scope Management**: Assignment specified these as optional stretch goals
-- **MVP Approach**: Deliver a fully functional core product
-
-## Future Enhancements
-
-If this were a production application, consider adding:
-
-- Unit and integration tests
-- API integration with proper error handling
-- Product detail pages
-- User authentication
-- Checkout flow
-- Payment integration
-- Admin panel for product management
+- Full product catalog with search and sort
+- Complete cart functionality with localStorage persistence
+- Optimistic API updates with error handling
+- Comprehensive test coverage
+- Accessible, semantic HTML structure
 
 ## Browser Support
 
@@ -208,5 +235,4 @@ If this were a production application, consider adding:
 
 ## License
 
-This project is created for educational purposes as part of a Shopify technical assessment.
-```
+This project is created for test purposes as part of a Shopify technical assessment.
