@@ -1,0 +1,26 @@
+[
+  {
+    "id": "p1",
+    "title": "Snowboard Pro",
+    "price": 39900,
+    "tags": ["Premium", "New"]
+  },
+  {
+    "id": "p2",
+    "title": "All-Mountain Bindings",
+    "price": 18900,
+    "tags": ["New"]
+  },
+  {
+    "id": "p3",
+    "title": "Wax Kit",
+    "price": 2900,
+    "tags": ["Accessory"]
+  },
+  {
+    "id": "p4",
+    "title": "Helmet",
+    "price": 9900,
+    "tags": ["Safety", "Premium"]
+  }
+]
